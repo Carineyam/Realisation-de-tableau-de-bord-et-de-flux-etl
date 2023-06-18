@@ -1,0 +1,3210 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/3/2023 1:00:30 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-Q4QBS60"
+  DTS:CreatorName="DESKTOP-Q4QBS60\user"
+  DTS:DTSID="{9E680972-A7ED-450D-B63B-E2D31EB28652}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.521.0"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{AE334EDA-DD53-4CA9-86E3-D63843BC7552}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALES]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BF61FD67-BF8B-4857-B6B2-90D5B11CAA78}"
+      DTS:ObjectName="DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALES">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-Q4QBS60\SQLEXPRESS;Initial Catalog=BOLISSALES;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALESDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D18EF985-79D4-4020-889B-76B7BBBA9147}"
+      DTS:ObjectName="DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALESDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-Q4QBS60\SQLEXPRESS;Initial Catalog=BOLISSALESDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\City"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{6A56A6CA-C3FB-44FC-9C7D-39057825F42C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="City"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022 CTP2.0; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D18EF985-79D4-4020-889B-76B7BBBA9147}"
+          SQLTask:SqlStatementSource="delete from [BOLISSALESDW].[dbo].[DimCity]&#xA;DBCC CHECKIDENT (DimCity, RESEED, 0)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Customer"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{8C636866-1D4E-4898-86F3-B576E41A6308}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Customer"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022 CTP2.0; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D18EF985-79D4-4020-889B-76B7BBBA9147}"
+          SQLTask:SqlStatementSource="delete from [BOLISSALESDW].[dbo].[DimCustomer]&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Date"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{A0278297-CF54-4B3B-93D5-E10C489F1FB4}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Date"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022 CTP2.0; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D18EF985-79D4-4020-889B-76B7BBBA9147}"
+          SQLTask:SqlStatementSource="delete from [BOLISSALESDW].[dbo].[DimDate]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\FactSales"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{614B6857-45FC-4860-9AC9-8823C0DBD89C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="FactSales"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022 CTP2.0; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D18EF985-79D4-4020-889B-76B7BBBA9147}"
+          SQLTask:SqlStatementSource="delete from [BOLISSALESDW].[dbo].[FactSales]&#xA;DBCC CHECKIDENT (FactSales, RESEED, 0)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Item"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{19DE786A-6B6A-4A55-9EDF-BE00846E2C5E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Item"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022 CTP2.0; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D18EF985-79D4-4020-889B-76B7BBBA9147}"
+          SQLTask:SqlStatementSource="delete from [BOLISSALESDW].[dbo].[DimItem]&#xA;DBCC CHECKIDENT (DimItem, RESEED, 0)&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\remplissage city"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{C8026152-DF45-46B7-8240-DE3DAB95A8CA}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="remplissage city"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\remplissage city\Destination OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[DimCity]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\remplissage city\Destination OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALESDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALESDW]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\remplissage city\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\remplissage city\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[location]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="location"
+                      externalMetadataColumnId="Package\remplissage city\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[CityName]"
+                      lineageId="Package\remplissage city\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[location]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\remplissage city\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[CityID]"
+                      dataType="i4"
+                      name="CityID" />
+                    <externalMetadataColumn
+                      refId="Package\remplissage city\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[CityName]"
+                      dataType="wstr"
+                      length="100"
+                      name="CityName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\remplissage city\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\remplissage city\Destination OLE DB.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissage city\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\remplissage city\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\remplissage city\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\remplissage city\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\remplissage city\Source OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Source OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT location
+FROM            [Orders]</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\remplissage city\Source OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALES]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALES]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\remplissage city\Source OLE DB.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissage city\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[location]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\remplissage city\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[location]"
+                      length="50"
+                      lineageId="Package\remplissage city\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[location]"
+                      name="location"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\remplissage city\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[location]"
+                      dataType="wstr"
+                      length="50"
+                      name="location" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\remplissage city\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissage city\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[location]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\remplissage city\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[location]"
+                      name="location" />
+                    <outputColumn
+                      refId="Package\remplissage city\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\remplissage city\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\remplissage city\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\remplissage city\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\remplissage city.Paths[Sortie de source OLE DB]"
+              endId="Package\remplissage city\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de source OLE DB"
+              startId="Package\remplissage city\Source OLE DB.Outputs[Sortie de source OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\remplissage customer"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{AE9A0DA0-7435-42FC-A008-7FCB47258EA4}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="remplissage customer"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\remplissage customer\Destination OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[DimCustomer]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\remplissage customer\Destination OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALESDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALESDW]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\remplissage customer\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\remplissage customer\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Gender]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Gender"
+                      externalMetadataColumnId="Package\remplissage customer\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Gender]"
+                      lineageId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Gender]" />
+                    <inputColumn
+                      refId="Package\remplissage customer\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Age]"
+                      cachedDataType="i4"
+                      cachedName="Age"
+                      externalMetadataColumnId="Package\remplissage customer\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Age]"
+                      lineageId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Age]" />
+                    <inputColumn
+                      refId="Package\remplissage customer\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="name"
+                      externalMetadataColumnId="Package\remplissage customer\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[CustomerName]"
+                      lineageId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[name]" />
+                    <inputColumn
+                      refId="Package\remplissage customer\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[customer_id]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="customer_id"
+                      externalMetadataColumnId="Package\remplissage customer\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[CustomerID]"
+                      lineageId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[customer_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\remplissage customer\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[CustomerID]"
+                      dataType="wstr"
+                      length="50"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\remplissage customer\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[CustomerName]"
+                      dataType="wstr"
+                      length="50"
+                      name="CustomerName" />
+                    <externalMetadataColumn
+                      refId="Package\remplissage customer\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Age]"
+                      dataType="i4"
+                      name="Age" />
+                    <externalMetadataColumn
+                      refId="Package\remplissage customer\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Gender]"
+                      dataType="wstr"
+                      length="50"
+                      name="Gender" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\remplissage customer\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\remplissage customer\Destination OLE DB.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissage customer\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\remplissage customer\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\remplissage customer\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\remplissage customer\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\remplissage customer\Source OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Source OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[customers]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\remplissage customer\Source OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALES]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALES]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[customer_id]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[customer_id]"
+                      length="50"
+                      lineageId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[customer_id]"
+                      name="customer_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[name]"
+                      length="50"
+                      lineageId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Gender]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Gender]"
+                      length="50"
+                      lineageId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Gender]"
+                      name="Gender"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Age]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Age]"
+                      lineageId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Age]"
+                      name="Age"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[customer_id]"
+                      dataType="wstr"
+                      length="50"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="50"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Gender]"
+                      dataType="wstr"
+                      length="50"
+                      name="Gender" />
+                    <externalMetadataColumn
+                      refId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Age]"
+                      dataType="i4"
+                      name="Age" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\remplissage customer\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissage customer\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[customer_id]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\remplissage customer\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[customer_id]"
+                      name="customer_id" />
+                    <outputColumn
+                      refId="Package\remplissage customer\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[name]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\remplissage customer\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[name]"
+                      name="name" />
+                    <outputColumn
+                      refId="Package\remplissage customer\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Gender]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\remplissage customer\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Gender]"
+                      name="Gender" />
+                    <outputColumn
+                      refId="Package\remplissage customer\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Age]"
+                      dataType="i4"
+                      lineageId="Package\remplissage customer\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Age]"
+                      name="Age" />
+                    <outputColumn
+                      refId="Package\remplissage customer\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\remplissage customer\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\remplissage customer\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\remplissage customer\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\remplissage customer.Paths[Sortie de source OLE DB]"
+              endId="Package\remplissage customer\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de source OLE DB"
+              startId="Package\remplissage customer\Source OLE DB.Outputs[Sortie de source OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\remplissage date"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{D85C1EF6-A73C-4D68-8643-3EB6EA465623}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="remplissage date"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\remplissage date\Colonne dérivée"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Colonne dérivée;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Crée de nouvelles valeurs de colonne en appliquant des expressions aux colonnes d'entrée de transformation. Créez de nouvelles colonnes ou remplacez celles qui existent déjà. Par exemple, concaténez les valeurs de la colonne 'prénom' et de la colonne 'nom' pour créer une colonne 'nom complet'."
+              name="Colonne dérivée"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\remplissage date\Colonne dérivée.Inputs[Entrée de colonne dérivée]"
+                  description="Entrée de la transformation de colonnes dérivées"
+                  name="Entrée de colonne dérivée">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\remplissage date\Colonne dérivée.Inputs[Entrée de colonne dérivée].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\remplissage date\Trier.Outputs[Sortie de tri].Columns[Date]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\remplissage date\Colonne dérivée.Outputs[Sortie de colonne dérivée]"
+                  description="Sortie par défaut de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  name="Sortie de colonne dérivée"
+                  synchronousInputId="Package\remplissage date\Colonne dérivée.Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissage date\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\remplissage date\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Year]"
+                      name="Year"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[YEAR](#{Package\remplissage date\Trier.Outputs[Sortie de tri].Columns[Date]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">YEAR(Date)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\remplissage date\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Month]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\remplissage date\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Month]"
+                      name="Month"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[MONTH](#{Package\remplissage date\Trier.Outputs[Sortie de tri].Columns[Date]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">MONTH(Date)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\remplissage date\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Day]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\remplissage date\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Day]"
+                      name="Day"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[DAY](#{Package\remplissage date\Trier.Outputs[Sortie de tri].Columns[Date]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">DAY(Date)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\remplissage date\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\remplissage date\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Date]"
+                      name="Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">#{Package\remplissage date\Trier.Outputs[Sortie de tri].Columns[Date]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">Date</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\remplissage date\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée]"
+                  description="Sortie d'erreur de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de colonne dérivée"
+                  synchronousInputId="Package\remplissage date\Colonne dérivée.Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissage date\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\remplissage date\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\remplissage date\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\remplissage date\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\remplissage date\Conversion de données"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversion de données;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Conversion de données"
+              name="Conversion de données"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\remplissage date\Conversion de données.Inputs[Entrée de conversion de données]"
+                  name="Entrée de conversion de données">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\remplissage date\Conversion de données.Inputs[Entrée de conversion de données].Columns[Year]"
+                      cachedDataType="i4"
+                      cachedName="Year"
+                      lineageId="Package\remplissage date\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Year]" />
+                    <inputColumn
+                      refId="Package\remplissage date\Conversion de données.Inputs[Entrée de conversion de données].Columns[Month]"
+                      cachedDataType="i4"
+                      cachedName="Month"
+                      lineageId="Package\remplissage date\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Month]" />
+                    <inputColumn
+                      refId="Package\remplissage date\Conversion de données.Inputs[Entrée de conversion de données].Columns[Day]"
+                      cachedDataType="i4"
+                      cachedName="Day"
+                      lineageId="Package\remplissage date\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Day]" />
+                    <inputColumn
+                      refId="Package\remplissage date\Conversion de données.Inputs[Entrée de conversion de données].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      lineageId="Package\remplissage date\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Date]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\remplissage date\Conversion de données.Outputs[Sortie de conversion de données]"
+                  exclusionGroup="1"
+                  name="Sortie de conversion de données"
+                  synchronousInputId="Package\remplissage date\Conversion de données.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissage date\Conversion de données.Outputs[Sortie de conversion de données].Columns[Year]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\remplissage date\Conversion de données.Outputs[Sortie de conversion de données].Columns[Year]"
+                      name="Year"
+                      precision="18"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\remplissage date\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Year]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\remplissage date\Conversion de données.Outputs[Sortie de conversion de données].Columns[Month]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\remplissage date\Conversion de données.Outputs[Sortie de conversion de données].Columns[Month]"
+                      name="Month"
+                      precision="18"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\remplissage date\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Month]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\remplissage date\Conversion de données.Outputs[Sortie de conversion de données].Columns[Day]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\remplissage date\Conversion de données.Outputs[Sortie de conversion de données].Columns[Day]"
+                      name="Day"
+                      precision="18"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\remplissage date\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Day]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\remplissage date\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Colonne dérivée.Date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\remplissage date\Conversion de données.Outputs[Sortie de conversion de données].Columns[Copy of Colonne dérivée.Date]"
+                      name="Copy of Colonne dérivée.Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                          name="SourceInputColumnLineageID">#{Package\remplissage date\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Date]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\remplissage date\Conversion de données.Outputs[Sortie d'erreur de conversion de données]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de conversion de données"
+                  synchronousInputId="Package\remplissage date\Conversion de données.Inputs[Entrée de conversion de données]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissage date\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\remplissage date\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\remplissage date\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\remplissage date\Conversion de données.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\remplissage date\Destination OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[DimDate]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\remplissage date\Destination OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALESDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALESDW]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\remplissage date\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\remplissage date\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      externalMetadataColumnId="Package\remplissage date\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[DateID]"
+                      lineageId="Package\remplissage date\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Date]" />
+                    <inputColumn
+                      refId="Package\remplissage date\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Day]"
+                      cachedDataType="numeric"
+                      cachedName="Day"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\remplissage date\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Day]"
+                      lineageId="Package\remplissage date\Conversion de données.Outputs[Sortie de conversion de données].Columns[Day]" />
+                    <inputColumn
+                      refId="Package\remplissage date\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Month]"
+                      cachedDataType="numeric"
+                      cachedName="Month"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\remplissage date\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Month]"
+                      lineageId="Package\remplissage date\Conversion de données.Outputs[Sortie de conversion de données].Columns[Month]" />
+                    <inputColumn
+                      refId="Package\remplissage date\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Year]"
+                      cachedDataType="numeric"
+                      cachedName="Year"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\remplissage date\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Year]"
+                      lineageId="Package\remplissage date\Conversion de données.Outputs[Sortie de conversion de données].Columns[Year]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\remplissage date\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[DateID]"
+                      dataType="dbDate"
+                      name="DateID" />
+                    <externalMetadataColumn
+                      refId="Package\remplissage date\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Day]"
+                      dataType="i4"
+                      name="Day" />
+                    <externalMetadataColumn
+                      refId="Package\remplissage date\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Month]"
+                      dataType="i4"
+                      name="Month" />
+                    <externalMetadataColumn
+                      refId="Package\remplissage date\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Year]"
+                      dataType="i4"
+                      name="Year" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\remplissage date\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\remplissage date\Destination OLE DB.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissage date\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\remplissage date\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\remplissage date\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\remplissage date\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\remplissage date\Source OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Source OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[Orders]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT [Date]
+FROM            Orders</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\remplissage date\Source OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALES]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALES]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\remplissage date\Source OLE DB.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissage date\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\remplissage date\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Date]"
+                      lineageId="Package\remplissage date\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Date]"
+                      name="Date"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\remplissage date\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Date]"
+                      dataType="dbDate"
+                      name="Date" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\remplissage date\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissage date\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Date]"
+                      dataType="dbDate"
+                      lineageId="Package\remplissage date\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Date]"
+                      name="Date" />
+                    <outputColumn
+                      refId="Package\remplissage date\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\remplissage date\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\remplissage date\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\remplissage date\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\remplissage date\Trier"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Trier;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Trie les données d'entrée en ordre croissant ou décroissant lorsque le tri ne peut pas être effectué à la source. Par exemple, triez les données de vente par 'id de client' avant leur enregistrement dans un fichier plat et leur diffusion dans un autre service. Remarque : nous ne recommandons pas cette transformation dans le cas de flux de données volumineux."
+              name="Trier"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si la transformation de tri supprime les lignes comportant des valeurs de tri en double."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le nombre maximal de threads à utiliser pour le tri."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\remplissage date\Trier.Inputs[Entrée de tri]"
+                  name="Entrée de tri">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\remplissage date\Trier.Inputs[Entrée de tri].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      lineageId="Package\remplissage date\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Date]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\remplissage date\Trier.Outputs[Sortie de tri]"
+                  isSorted="true"
+                  name="Sortie de tri">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissage date\Trier.Outputs[Sortie de tri].Columns[Date]"
+                      dataType="dbDate"
+                      lineageId="Package\remplissage date\Trier.Outputs[Sortie de tri].Columns[Date]"
+                      name="Date"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\remplissage date\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Date]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\remplissage date.Paths[Sortie de colonne dérivée]"
+              endId="Package\remplissage date\Conversion de données.Inputs[Entrée de conversion de données]"
+              name="Sortie de colonne dérivée"
+              startId="Package\remplissage date\Colonne dérivée.Outputs[Sortie de colonne dérivée]" />
+            <path
+              refId="Package\remplissage date.Paths[Sortie de conversion de données]"
+              endId="Package\remplissage date\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de conversion de données"
+              startId="Package\remplissage date\Conversion de données.Outputs[Sortie de conversion de données]" />
+            <path
+              refId="Package\remplissage date.Paths[Sortie de source OLE DB]"
+              endId="Package\remplissage date\Trier.Inputs[Entrée de tri]"
+              name="Sortie de source OLE DB"
+              startId="Package\remplissage date\Source OLE DB.Outputs[Sortie de source OLE DB]" />
+            <path
+              refId="Package\remplissage date.Paths[Sortie de tri]"
+              endId="Package\remplissage date\Colonne dérivée.Inputs[Entrée de colonne dérivée]"
+              name="Sortie de tri"
+              startId="Package\remplissage date\Trier.Outputs[Sortie de tri]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\remplissage item"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{01D76592-26F7-4998-B89F-AC48611438F3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="remplissage item"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\remplissage item\Destination OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[DimItem]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\remplissage item\Destination OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALESDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALESDW]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\remplissage item\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\remplissage item\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[price]"
+                      cachedDataType="numeric"
+                      cachedName="price"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\remplissage item\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[price]"
+                      lineageId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[price]" />
+                    <inputColumn
+                      refId="Package\remplissage item\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[item_name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="item_name"
+                      externalMetadataColumnId="Package\remplissage item\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[ItemName]"
+                      lineageId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[item_name]" />
+                    <inputColumn
+                      refId="Package\remplissage item\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[category]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="category"
+                      externalMetadataColumnId="Package\remplissage item\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[CategoryName]"
+                      lineageId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[category]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\remplissage item\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[price]"
+                      dataType="numeric"
+                      name="price"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\remplissage item\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[ItemID]"
+                      dataType="i4"
+                      name="ItemID" />
+                    <externalMetadataColumn
+                      refId="Package\remplissage item\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[ItemName]"
+                      dataType="wstr"
+                      length="100"
+                      name="ItemName" />
+                    <externalMetadataColumn
+                      refId="Package\remplissage item\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[CategoryName]"
+                      dataType="wstr"
+                      length="50"
+                      name="CategoryName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\remplissage item\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\remplissage item\Destination OLE DB.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissage item\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\remplissage item\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\remplissage item\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\remplissage item\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\remplissage item\Source OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Source OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[Item]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT  p.item_name, p.category, c.CategoryID, p.price ,c.CategoryName
+FROM            Item AS p INNER JOIN
+                         PIZZASALESDW.dbo.DimCategory AS c ON p.category = c.CategoryName</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\remplissage item\Source OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALES]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALES]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[item_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[item_name]"
+                      length="50"
+                      lineageId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[item_name]"
+                      name="item_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[category]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[category]"
+                      length="50"
+                      lineageId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[category]"
+                      name="category"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[price]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[price]"
+                      lineageId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[price]"
+                      name="price"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Item_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Item_id]"
+                      lineageId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Item_id]"
+                      name="Item_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[profit]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[profit]"
+                      lineageId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[profit]"
+                      name="profit"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[item_name]"
+                      dataType="wstr"
+                      length="50"
+                      name="item_name" />
+                    <externalMetadataColumn
+                      refId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[category]"
+                      dataType="wstr"
+                      length="50"
+                      name="category" />
+                    <externalMetadataColumn
+                      refId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[price]"
+                      dataType="r8"
+                      name="price" />
+                    <externalMetadataColumn
+                      refId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Item_id]"
+                      dataType="i4"
+                      name="Item_id" />
+                    <externalMetadataColumn
+                      refId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[profit]"
+                      dataType="i4"
+                      name="profit" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\remplissage item\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissage item\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Item_id]"
+                      dataType="i4"
+                      lineageId="Package\remplissage item\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Item_id]"
+                      name="Item_id" />
+                    <outputColumn
+                      refId="Package\remplissage item\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[item_name]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\remplissage item\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[item_name]"
+                      name="item_name" />
+                    <outputColumn
+                      refId="Package\remplissage item\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[category]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\remplissage item\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[category]"
+                      name="category" />
+                    <outputColumn
+                      refId="Package\remplissage item\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[profit]"
+                      dataType="i4"
+                      lineageId="Package\remplissage item\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[profit]"
+                      name="profit" />
+                    <outputColumn
+                      refId="Package\remplissage item\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[price]"
+                      dataType="r8"
+                      lineageId="Package\remplissage item\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[price]"
+                      name="price" />
+                    <outputColumn
+                      refId="Package\remplissage item\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\remplissage item\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\remplissage item\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\remplissage item\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\remplissage item.Paths[Sortie de source OLE DB]"
+              endId="Package\remplissage item\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de source OLE DB"
+              startId="Package\remplissage item\Source OLE DB.Outputs[Sortie de source OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\remplissagefactsales"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{868EF0F3-0D77-44FF-8AF8-C2BD848AE271}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="remplissagefactsales"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\remplissagefactsales\Destination OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[FactSales]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\remplissagefactsales\Destination OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALESDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALESDW]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[customer_id]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="customer_id"
+                      externalMetadataColumnId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[CustomerID]"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[customer_id]" />
+                    <inputColumn
+                      refId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Total]"
+                      cachedDataType="r8"
+                      cachedName="Total"
+                      externalMetadataColumnId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Total]"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Total]" />
+                    <inputColumn
+                      refId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[DateID]"
+                      cachedDataType="dbDate"
+                      cachedName="DateID"
+                      externalMetadataColumnId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[DateID]"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[DateID]" />
+                    <inputColumn
+                      refId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Units]"
+                      cachedDataType="i4"
+                      cachedName="Units"
+                      externalMetadataColumnId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Quantity]"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Units]" />
+                    <inputColumn
+                      refId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Item_id]"
+                      cachedDataType="i4"
+                      cachedName="Item_id"
+                      externalMetadataColumnId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[ItemID]"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Item_id]" />
+                    <inputColumn
+                      refId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[profit]"
+                      cachedDataType="i4"
+                      cachedName="profit"
+                      externalMetadataColumnId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Profit]"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[profit]" />
+                    <inputColumn
+                      refId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[CityID]"
+                      cachedDataType="i4"
+                      cachedName="CityID"
+                      externalMetadataColumnId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[CityID]"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[CityID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[SalesID]"
+                      dataType="i4"
+                      name="SalesID" />
+                    <externalMetadataColumn
+                      refId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[ItemID]"
+                      dataType="i4"
+                      name="ItemID" />
+                    <externalMetadataColumn
+                      refId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[CustomerID]"
+                      dataType="wstr"
+                      length="50"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[DateID]"
+                      dataType="dbDate"
+                      name="DateID" />
+                    <externalMetadataColumn
+                      refId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Total]"
+                      dataType="numeric"
+                      name="Total"
+                      precision="10"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Quantity]"
+                      dataType="i4"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[CityID]"
+                      dataType="i4"
+                      name="CityID" />
+                    <externalMetadataColumn
+                      refId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Profit]"
+                      dataType="i4"
+                      name="Profit" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\remplissagefactsales\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissagefactsales\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\remplissagefactsales\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\remplissagefactsales\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\remplissagefactsales\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\remplissagefactsales\Source OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Source OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        o.Item_id, o.customer_id, o.Units, o.Units * c.profit AS profit, o.Total, e.CityID, d.DateID
+FROM            Orders AS o INNER JOIN
+                         Item AS c ON o.Item_id = c.Item_id INNER JOIN
+                         BOLISSALESDW.dbo.DimDate AS d ON o.[Date] = d.DateID INNER JOIN
+                         BOLISSALESDW.dbo.DimCity AS e ON o.location = e.CityName
+ORDER BY d.DateID</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\remplissagefactsales\Source OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALES]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-Q4QBS60\SQLEXPRESS.BOLISSALES]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Item_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Item_id]"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Item_id]"
+                      name="Item_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[customer_id]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[customer_id]"
+                      length="50"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[customer_id]"
+                      name="customer_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Units]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Units]"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Units]"
+                      name="Units"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[profit]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[profit]"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[profit]"
+                      name="profit"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Total]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Total]"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[Total]"
+                      name="Total"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[CityID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[CityID]"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[CityID]"
+                      name="CityID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[DateID]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[DateID]"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[DateID]"
+                      name="DateID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Item_id]"
+                      dataType="i4"
+                      name="Item_id" />
+                    <externalMetadataColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[customer_id]"
+                      dataType="wstr"
+                      length="50"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Units]"
+                      dataType="i4"
+                      name="Units" />
+                    <externalMetadataColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[profit]"
+                      dataType="i4"
+                      name="profit" />
+                    <externalMetadataColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[Total]"
+                      dataType="r8"
+                      name="Total" />
+                    <externalMetadataColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[CityID]"
+                      dataType="i4"
+                      name="CityID" />
+                    <externalMetadataColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[DateID]"
+                      dataType="dbDate"
+                      name="DateID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Item_id]"
+                      dataType="i4"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Item_id]"
+                      name="Item_id" />
+                    <outputColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[customer_id]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[customer_id]"
+                      name="customer_id" />
+                    <outputColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Units]"
+                      dataType="i4"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Units]"
+                      name="Units" />
+                    <outputColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[profit]"
+                      dataType="i4"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[profit]"
+                      name="profit" />
+                    <outputColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Total]"
+                      dataType="r8"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[Total]"
+                      name="Total" />
+                    <outputColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[CityID]"
+                      dataType="i4"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[CityID]"
+                      name="CityID" />
+                    <outputColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[DateID]"
+                      dataType="dbDate"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[DateID]"
+                      name="DateID" />
+                    <outputColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\remplissagefactsales.Paths[Sortie de source OLE DB]"
+              endId="Package\remplissagefactsales\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de source OLE DB"
+              startId="Package\remplissagefactsales\Source OLE DB.Outputs[Sortie de source OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{7963FD31-2B7D-44B5-9D37-170054DEAF7D}"
+      DTS:From="Package\FactSales"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Date" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{7FECB0CC-96DE-4031-854B-7075CAFF77AE}"
+      DTS:From="Package\Date"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\remplissage date" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{44CB4DE5-22C8-42B0-B905-4EB039291047}"
+      DTS:From="Package\remplissage date"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\remplissagefactsales" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{2E3D4B53-B719-4C78-A513-40E0F6136D2C}"
+      DTS:From="Package\remplissage customer"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\remplissagefactsales" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 12]"
+      DTS:CreationName=""
+      DTS:DTSID="{DA9DCBD6-29AF-4422-B848-F4213D5F5765}"
+      DTS:From="Package\remplissage city"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 12"
+      DTS:To="Package\remplissagefactsales" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{74196D5F-0F86-415C-82C7-36261B8AE641}"
+      DTS:From="Package\FactSales"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Item" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{6A1EEADB-5451-4DC3-BBBC-9AF9D0896A62}"
+      DTS:From="Package\Item"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\remplissage item" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{818B0577-F8A4-4E4B-8485-ECD7BFD06D99}"
+      DTS:From="Package\FactSales"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Customer" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{C8D90C4B-7AE5-4CCC-A77B-40FDB723CE0F}"
+      DTS:From="Package\Customer"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\remplissage customer" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{CDB0E291-4B39-453F-9BCE-6BF3C2401666}"
+      DTS:From="Package\FactSales"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\City" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{57DE227A-BE82-4FBA-96EF-9E3B1321F821}"
+      DTS:From="Package\City"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\remplissage city" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{D0C7F351-3D74-4189-B2A6-316937CBCDD9}"
+      DTS:From="Package\remplissage item"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\remplissagefactsales" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="124,42"
+          Id="Package\Customer"
+          TopLeft="434,152" />
+        <NodeLayout
+          Size="101,42"
+          Id="Package\Date"
+          TopLeft="236,143" />
+        <NodeLayout
+          Size="123,42"
+          Id="Package\FactSales"
+          TopLeft="351,39" />
+        <NodeLayout
+          Size="101,42"
+          Id="Package\Item"
+          TopLeft="64,143" />
+        <NodeLayout
+          Size="97,42"
+          Id="Package\City"
+          TopLeft="614,154" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\remplissage customer"
+          TopLeft="455,243" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\remplissage date"
+          TopLeft="247,240" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\remplissage item"
+          TopLeft="20,249" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\remplissage city"
+          TopLeft="657,274" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\remplissagefactsales"
+          TopLeft="255,415" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="431.666666666667,81">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-145.166666666667,62"
+              Start="0,0"
+              End="-145.166666666667,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.2776886035313" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.2776886035313"
+                    Point2="0,25.2776886035313"
+                    Point3="-4,25.2776886035313" />
+                  <mssgle:LineSegment
+                    End="-141.166666666667,25.2776886035313" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-141.166666666667,25.2776886035313"
+                    Point2="-145.166666666667,25.2776886035313"
+                    Point3="-145.166666666667,29.2776886035313" />
+                  <mssgle:LineSegment
+                    End="-145.166666666667,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="286.5,185">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="40,55"
+              Start="0,0"
+              End="40,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.5"
+                    Point2="0,27.5"
+                    Point3="4,27.5" />
+                  <mssgle:LineSegment
+                    End="36,27.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="36,27.5"
+                    Point2="40,27.5"
+                    Point3="40,31.5" />
+                  <mssgle:LineSegment
+                    End="40,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="326.15,282">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,133"
+              Start="0,0"
+              End="0,125.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,125.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="546,285">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-186.8,130"
+              Start="0,0"
+              End="-186.8,122.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67.8572331017056" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,67.8572331017056"
+                    Point2="0,71.8572331017056"
+                    Point3="-4,71.8572331017056" />
+                  <mssgle:LineSegment
+                    End="-182.8,71.8572331017056" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-182.8,71.8572331017056"
+                    Point2="-186.8,71.8572331017056"
+                    Point3="-186.8,75.8572331017056" />
+                  <mssgle:LineSegment
+                    End="-186.8,122.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="734,316">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-341.4,99"
+              Start="0,0"
+              End="-341.4,91.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.35548438751" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,65.35548438751"
+                    Point2="0,69.35548438751"
+                    Point3="-4,69.35548438751" />
+                  <mssgle:LineSegment
+                    End="-337.4,69.35548438751" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-337.4,69.35548438751"
+                    Point2="-341.4,69.35548438751"
+                    Point3="-341.4,73.35548438751" />
+                  <mssgle:LineSegment
+                    End="-341.4,91.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="393.333333333333,81">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-278.833333333333,62"
+              Start="0,0"
+              End="-278.833333333333,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.2776886035313" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.2776886035313"
+                    Point2="0,25.2776886035313"
+                    Point3="-4,25.2776886035313" />
+                  <mssgle:LineSegment
+                    End="-274.833333333333,25.2776886035313" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-274.833333333333,25.2776886035313"
+                    Point2="-278.833333333333,25.2776886035313"
+                    Point3="-278.833333333333,29.2776886035313" />
+                  <mssgle:LineSegment
+                    End="-278.833333333333,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="114.5,185">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-15,64"
+              Start="0,0"
+              End="-15,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28"
+                    Point2="0,32"
+                    Point3="-4,32" />
+                  <mssgle:LineSegment
+                    End="-11,32" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-11,32"
+                    Point2="-15,32"
+                    Point3="-15,36" />
+                  <mssgle:LineSegment
+                    End="-15,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="441.25,81">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="54.75,71"
+              Start="0,0"
+              End="54.75,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.6710875331565" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.6710875331565"
+                    Point2="0,24.6710875331565"
+                    Point3="4,24.6710875331565" />
+                  <mssgle:LineSegment
+                    End="50.75,24.6710875331565" />
+                  <mssgle:CubicBezierSegment
+                    Point1="50.75,24.6710875331565"
+                    Point2="54.75,24.6710875331565"
+                    Point3="54.75,28.6710875331565" />
+                  <mssgle:LineSegment
+                    End="54.75,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="496,194">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="50,49"
+              Start="0,0"
+              End="50,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5"
+                    Point2="0,24.5"
+                    Point3="4,24.5" />
+                  <mssgle:LineSegment
+                    End="46,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46,24.5"
+                    Point2="50,24.5"
+                    Point3="50,28.5" />
+                  <mssgle:LineSegment
+                    End="50,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="447,81">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="215.5,73"
+              Start="0,0"
+              End="215.5,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.271186440678" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.271186440678"
+                    Point2="0,22.271186440678"
+                    Point3="4,22.271186440678" />
+                  <mssgle:LineSegment
+                    End="211.5,22.271186440678" />
+                  <mssgle:CubicBezierSegment
+                    Point1="211.5,22.271186440678"
+                    Point2="215.5,22.271186440678"
+                    Point3="215.5,26.271186440678" />
+                  <mssgle:LineSegment
+                    End="215.5,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="662.5,196">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="71.5,78"
+              Start="0,0"
+              End="71.5,70.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35"
+                    Point2="0,39"
+                    Point3="4,39" />
+                  <mssgle:LineSegment
+                    End="67.5,39" />
+                  <mssgle:CubicBezierSegment
+                    Point1="67.5,39"
+                    Point2="71.5,39"
+                    Point3="71.5,43" />
+                  <mssgle:LineSegment
+                    End="71.5,70.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="99.5,291">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="192.9,124"
+              Start="0,0"
+              End="192.9,116.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,82.8694955964772" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,82.8694955964772"
+                    Point2="0,86.8694955964772"
+                    Point3="4,86.8694955964772" />
+                  <mssgle:LineSegment
+                    End="188.9,86.8694955964772" />
+                  <mssgle:CubicBezierSegment
+                    Point1="188.9,86.8694955964772"
+                    Point2="192.9,86.8694955964772"
+                    Point3="192.9,90.8694955964772" />
+                  <mssgle:LineSegment
+                    End="192.9,116.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\remplissage customer">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\remplissage customer\Source OLE DB"
+          TopLeft="56,110" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\remplissage customer\Destination OLE DB"
+          TopLeft="386,193" />
+        <EdgeLayout
+          Id="Package\remplissage customer.Paths[Sortie de source OLE DB]"
+          TopLeft="131,152">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="340.5,41"
+              Start="0,0"
+              End="340.5,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.5"
+                    Point2="0,20.5"
+                    Point3="4,20.5" />
+                  <mssgle:LineSegment
+                    End="336.5,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="336.5,20.5"
+                    Point2="340.5,20.5"
+                    Point3="340.5,24.5" />
+                  <mssgle:LineSegment
+                    End="340.5,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\remplissage customer\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\remplissage customer\Source OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\remplissage date">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171,42"
+          Id="Package\remplissage date\Destination OLE DB"
+          TopLeft="250,392" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\remplissage date\Conversion de données"
+          TopLeft="442,326" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\remplissage date\Colonne dérivée"
+          TopLeft="572,223" />
+        <NodeLayout
+          Size="101,42"
+          Id="Package\remplissage date\Trier"
+          TopLeft="279,137" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\remplissage date\Source OLE DB"
+          TopLeft="100,34" />
+        <EdgeLayout
+          Id="Package\remplissage date.Paths[Sortie de conversion de données]"
+          TopLeft="536.5,368">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-201,24"
+              Start="0,0"
+              End="-201,16.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8"
+                    Point2="0,12"
+                    Point3="-4,12" />
+                  <mssgle:LineSegment
+                    End="-197,12" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-197,12"
+                    Point2="-201,12"
+                    Point3="-201,16" />
+                  <mssgle:LineSegment
+                    End="-201,16.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\remplissage date.Paths[Sortie de colonne dérivée]"
+          TopLeft="649.5,265">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-113,61"
+              Start="0,0"
+              End="-113,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.5"
+                    Point2="0,30.5"
+                    Point3="-4,30.5" />
+                  <mssgle:LineSegment
+                    End="-109,30.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-109,30.5"
+                    Point2="-113,30.5"
+                    Point3="-113,34.5" />
+                  <mssgle:LineSegment
+                    End="-113,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\remplissage date.Paths[Sortie de tri]"
+          TopLeft="329.5,179">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="320,44"
+              Start="0,0"
+              End="320,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18"
+                    Point2="0,22"
+                    Point3="4,22" />
+                  <mssgle:LineSegment
+                    End="316,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="316,22"
+                    Point2="320,22"
+                    Point3="320,26" />
+                  <mssgle:LineSegment
+                    End="320,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\remplissage date.Paths[Sortie de source OLE DB]"
+          TopLeft="175,76">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="154.5,61"
+              Start="0,0"
+              End="154.5,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.5"
+                    Point2="0,30.5"
+                    Point3="4,30.5" />
+                  <mssgle:LineSegment
+                    End="150.5,30.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="150.5,30.5"
+                    Point2="154.5,30.5"
+                    Point3="154.5,34.5" />
+                  <mssgle:LineSegment
+                    End="154.5,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\remplissage date\Source OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\remplissage date\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\remplissage item">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\remplissage item\Source OLE DB"
+          TopLeft="73,62" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\remplissage item\Destination OLE DB"
+          TopLeft="383,199" />
+        <EdgeLayout
+          Id="Package\remplissage item.Paths[Sortie de source OLE DB]"
+          TopLeft="148,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="320.5,95"
+              Start="0,0"
+              End="320.5,87.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,43.5"
+                    Point2="0,47.5"
+                    Point3="4,47.5" />
+                  <mssgle:LineSegment
+                    End="316.5,47.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="316.5,47.5"
+                    Point2="320.5,47.5"
+                    Point3="320.5,51.5" />
+                  <mssgle:LineSegment
+                    End="320.5,87.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\remplissage item\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\remplissage item\Source OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\remplissage city">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171,42"
+          Id="Package\remplissage city\Destination OLE DB"
+          TopLeft="315,179" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\remplissage city\Source OLE DB"
+          TopLeft="60,58" />
+        <EdgeLayout
+          Id="Package\remplissage city.Paths[Sortie de source OLE DB]"
+          TopLeft="135,100">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="265.5,79"
+              Start="0,0"
+              End="265.5,71.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.5"
+                    Point2="0,39.5"
+                    Point3="4,39.5" />
+                  <mssgle:LineSegment
+                    End="261.5,39.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="261.5,39.5"
+                    Point2="265.5,39.5"
+                    Point3="265.5,43.5" />
+                  <mssgle:LineSegment
+                    End="265.5,71.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\remplissage city\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\remplissage city\Source OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\remplissagefactsales">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\remplissagefactsales\Source OLE DB"
+          TopLeft="217,106" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\remplissagefactsales\Destination OLE DB"
+          TopLeft="439,193" />
+        <EdgeLayout
+          Id="Package\remplissagefactsales.Paths[Sortie de source OLE DB]"
+          TopLeft="292,148">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="232.5,45"
+              Start="0,0"
+              End="232.5,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.5"
+                    Point2="0,22.5"
+                    Point3="4,22.5" />
+                  <mssgle:LineSegment
+                    End="228.5,22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="228.5,22.5"
+                    Point2="232.5,22.5"
+                    Point3="232.5,26.5" />
+                  <mssgle:LineSegment
+                    End="232.5,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\remplissagefactsales\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\remplissagefactsales\Source OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
